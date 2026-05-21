@@ -1,0 +1,49 @@
+
+:root{--green:#009B4E;--blue:#08749c;--dark:#1f2937;--muted:#6b7280;--bg:#f6f8f7;--card:#fff;--danger:#b91c1c;--warn:#b45309}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--dark)}
+header{background:#fff;padding:14px 16px 10px;border-bottom:1px solid #e5e7eb;text-align:center;position:sticky;top:0;z-index:5}
+.logo{max-width:230px;width:72%;height:auto}.subtitle{font-size:13px;color:var(--muted);margin-top:4px}
+nav{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:white;padding:8px;border-bottom:1px solid #e5e7eb;position:sticky;top:94px;z-index:4}
+nav button{border:1px solid #d1d5db;background:#fff;border-radius:12px;padding:10px 3px;font-size:12px}
+nav button.active{background:var(--green);color:white;border-color:var(--green)}
+main{padding:14px;max-width:860px;margin:0 auto}.card{background:var(--card);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:0 1px 8px rgba(0,0,0,.08)}
+h2{margin:0 0 12px;font-size:20px}label{display:block;font-weight:bold;margin:12px 0 6px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:12px;font-size:16px;background:#fff}
+textarea{min-height:72px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{width:100%;border:0;border-radius:14px;padding:13px 14px;background:var(--green);color:white;font-weight:bold;font-size:16px;margin-top:10px}
+.btn.secondary{background:var(--blue)}.btn.light{background:#e5e7eb;color:#111827}.btn.danger{background:var(--danger)}.btn.warn{background:var(--warn)}
+.small{font-size:12px;color:var(--muted)}.ok{color:var(--green);font-weight:bold}.err{color:var(--danger);font-weight:bold}
+.hidden{display:none!important}.list-item{padding:10px;border:1px solid #e5e7eb;border-radius:12px;margin:8px 0;background:#fafafa}
+.actions{display:flex;gap:8px;align-items:center}.actions button{flex:1}.actions span{flex:2}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left;vertical-align:top}
+video{width:100%;border-radius:14px;background:#111;max-height:320px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#f9fafb;border:1px solid #e5e7eb;border-radius:14px;padding:12px;text-align:center}.stat b{font-size:22px}
+@media(max-width:520px){nav{top:86px}.row,.statgrid{grid-template-columns:1fr}nav button{font-size:11px;padding:9px 2px}}
+
+
+
+
+/* MANATIL v1.4 - Patios archivo actualizado */
+html, body {
+  background: #009B4E;
+}
+
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+#appVersion {
+  display: block;
+  color: #009B4E;
+  font-weight: 700;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+#nextTripId {
+  display: none !important;
+}
+
+.hidden {
+  display: none !important;
+}

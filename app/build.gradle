@@ -1,0 +1,16 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.manatil.app'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.manatil.app"
+        minSdk 24
+        targetSdk 34
+        versionCode 14
+        versionName "1.4"
+    }
+}

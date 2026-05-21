@@ -1,0 +1,150 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#00964b">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="icon-192.png">
+<title>MANATIL Viajes</title>
+</head>
+<body>
+<header>
+  <img class="logo" src="logo.png" alt="MANATIL">
+  <div id="appVersion" class="small"></div>
+  <div class="subtitle">Viajes por lote VIN</div>
+</header>
+
+<nav>
+  <button id="btn-trip" onclick="show('trip')">Viaje</button>
+  <button id="btn-reports" onclick="show('reports')">Reportes</button>
+  <button id="btn-admin" onclick="show('admin')">Admin</button>
+</nav>
+
+<main>
+<section id="trip">
+  <div class="card">
+    <h2>Nuevo viaje</h2>
+
+    <label class="hidden">Próximo N° de viaje</label>
+    <input id="nextTripId" readonly>
+
+    <label>Flota</label>
+    <select id="tripFleet"></select>
+
+    <div class="row">
+      <div>
+        <label>Origen</label>
+        <select id="origin"></select>
+      </div>
+      <div>
+        <label>Destino</label>
+        <select id="destination"></select>
+      </div>
+    </div>
+
+    <label>Fecha y hora</label>
+    <input id="datetime" disabled>
+
+    <label>GPS origen</label>
+    <div class="row">
+      <input id="lat" readonly placeholder="Latitud">
+      <input id="lng" readonly placeholder="Longitud">
+    </div>
+    <p id="gpsStatus" class="small"></p>
+    <button class="btn light" onclick="getGps()">Actualizar GPS</button>
+  </div>
+
+  <div class="card">
+    <h2>Unidades del viaje</h2>
+    <button class="btn secondary" onclick="startScanner()">Escanear código de barras / VIN</button>
+
+    <div id="scannerBox" class="hidden">
+      <video id="video" muted playsinline></video>
+      <p id="scanHelp" class="small">Apuntá al código de barras del VIN.</p>
+      <button class="btn light" onclick="stopScanner()">Cerrar cámara</button>
+    </div>
+
+    <label>VIN</label>
+    <input id="vin" placeholder="Escanear código de barras o ingresar VIN">
+    <div id="vehicleInfo" class="small"></div>
+    <button class="btn secondary" onclick="addVin()">Agregar VIN al lote</button>
+
+    <h2 style="margin-top:18px">VIN cargados: <span id="lotCount">0</span></h2>
+    <div id="lotVins"></div>
+
+    <label>Observaciones</label>
+    <textarea id="notes" placeholder="Opcional"></textarea>
+
+    <button class="btn" onclick="saveTrip()">Guardar y generar viaje</button>
+    <button class="btn danger" onclick="clearCurrentLot()">Limpiar VIN sin guardar</button>
+  </div>
+</section>
+
+<section id="reports" class="hidden">
+  <div class="card">
+    <h2>Reportes</h2>
+    <div class="statgrid">
+      <div class="stat"><b id="totalTrips">0</b><br><span class="small">Histórico</span></div>
+      <div class="stat"><b id="visibleTrips">0</b><br><span class="small">Visibles</span></div>
+      <div class="stat"><b id="totalUnits">0</b><br><span class="small">VIN visibles</span></div>
+    </div>
+    <button class="btn" onclick="sendLastWhatsApp()">Enviar último por WhatsApp</button>
+    <button class="btn secondary" onclick="shareLastTripTxt()">Generar / compartir TXT último viaje</button>
+    <button class="btn warn" onclick="clearVisibleTrips()">Limpiar viajes visibles</button>
+    <button class="btn light" onclick="restoreVisibleTrips()">Mostrar histórico</button>
+    <p class="small">Limpiar visibles no borra el histórico. El botón TXT genera el archivo con formato VIN;99;;;;ORIGEN;URUGUAY;;;DESTINO.</p>
+  </div>
+
+  <div class="card">
+    <h2>Viajes visibles</h2>
+    <table>
+      <thead>
+        <tr><th>Viaje</th><th>Flota / Ruta</th><th>GPS</th><th>Enviar</th></tr>
+      </thead>
+      <tbody id="tripsTable"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="admin" class="hidden">
+  <div class="card">
+    <h2>Configuración</h2>
+    <label>WhatsApp destino</label>
+    <input id="phone" placeholder="5491123456789">
+    <label>Email respaldo opcional</label>
+    <input id="email">
+    <label>URL API / Google Apps Script</label>
+    <input id="syncUrl" placeholder="https://script.google.com/macros/s/.../exec">
+    <button class="btn" onclick="saveConfig()">Guardar configuración</button>
+  </div>
+
+  <div class="card">
+    <h2>Flotas</h2>
+    <input id="newFleet" placeholder="Nueva flota">
+    <button class="btn secondary" onclick="addListItem(LS.fleets,'newFleet')">Agregar flota</button>
+    <div id="fleetsList"></div>
+  </div>
+
+  <div class="card">
+    <h2>Orígenes</h2>
+    <input id="newOrigin" placeholder="Nuevo origen">
+    <button class="btn secondary" onclick="addListItem(LS.origins,'newOrigin')">Agregar origen</button>
+    <div id="originList"></div>
+  </div>
+
+  <div class="card">
+    <h2>Destinos</h2>
+    <input id="newDestination" placeholder="Nuevo destino">
+    <button class="btn secondary" onclick="addListItem(LS.destinations,'newDestination')">Agregar destino</button>
+    <div id="destinationList"></div>
+  </div>
+</section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

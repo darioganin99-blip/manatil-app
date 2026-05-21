@@ -1,0 +1,92 @@
+
+MANATIL - Version simplificada final
+
+Cambios:
+- Sin usuario.
+- La flota identifica el viaje.
+- Flota como lista desplegable.
+- Sin botón Crear viaje nuevo.
+- El viaje se genera al tocar Guardar y generar viaje, siempre que tenga al menos un VIN.
+- Sin botón Sincronizar pendientes.
+- Sin menú VIN.
+- Se mantiene WhatsApp, CSV, backup, GPS y administración de flotas/orígenes/destinos.
+
+Importante:
+- Para cámara y GPS debe ejecutarse desde HTTPS.
+- Al subir una nueva versión al hosting, si Android muestra la versión anterior, limpiar caché o cambiar el nombre/publicación.
+
+
+AUTO ENVÍO API / GOOGLE SHEETS
+
+1. Crear Google Sheet.
+2. Ir a Extensiones > Apps Script.
+3. Pegar el contenido del archivo apps_script_google_sheets.js.
+4. Deploy > New deployment > Web app.
+5. Execute as: Me.
+6. Access: Anyone.
+7. Copiar la URL /exec.
+8. En la app: Admin > URL API / Google Apps Script > pegar URL.
+9. Al guardar un viaje, se envía automáticamente.
+
+Si falla internet:
+- El viaje queda guardado localmente.
+- En Reportes aparece como Pendiente API.
+- Tocá Reintentar envíos pendientes.
+
+
+ACTUALIZACIÓN CÓDIGO DE BARRAS:
+- La app escanea códigos de barras para VIN.
+- Formatos soportados por navegador compatible: Code 128, Code 39, Code 93, Codabar, EAN, UPC, ITF y QR.
+- En Android usar Chrome actualizado.
+- Cámara y GPS requieren HTTPS.
+- También se cargaron los orígenes y destinos provistos.
+
+
+ACTUALIZACIÓN TXT:
+- Se agregó generación de archivo TXT por viaje.
+- Formato por línea:
+  VIN;99;;;;ORIGEN;URUGUAY;;;DESTINO
+- Ejemplo:
+  LS6CME0Z2VK100795;99;;;;RAS;URUGUAY;;;CARONE
+- En Android, si el navegador lo permite, el botón TXT abre el compartir para enviar por WhatsApp.
+- Si no lo permite, descarga el archivo .txt y luego se adjunta manualmente en WhatsApp.
+
+
+LIMPIEZA FINAL:
+- Se quitó menú Backup.
+- Se quitó Exportar CSV.
+- Se quitó Reintentar envíos pendientes.
+- Se mantiene envío automático API al guardar.
+- Se mantiene WhatsApp.
+- Se mantiene generación/compartir TXT por viaje.
+
+
+ACTUALIZACIÓN MANATIL v1.1 - Flotas y Patios:
+- Se cargaron 24 flotas desde Flotas Manatil.xlsx.
+- Se cargaron 64 orígenes desde Patios Manatil.xlsx.
+- Se cargaron 64 destinos desde Patios Manatil.xlsx.
+- La app actualiza automáticamente las listas al detectar esta versión.
+
+
+ACTUALIZACIÓN MANATIL v1.2 - Patios ordenados:
+- Orígenes reemplazados exclusivamente por los patios del archivo Patios Manatil(1).xlsx.
+- Destinos reemplazados exclusivamente por los patios del archivo Patios Manatil(1).xlsx.
+- Listas ordenadas alfabéticamente.
+- Se mantienen las flotas existentes de la versión anterior.
+- La app fuerza la actualización de estas listas al detectar la versión v1.2.
+
+
+ACTUALIZACIÓN MANATIL v1.3 - Estilo verde:
+- Se quitó visualmente el texto "Próximo N° de viaje".
+- Se mantiene la generación automática del número de viaje al guardar.
+- Se ajustó el color verde superior/inferior y theme_color a #009B4E.
+
+
+ACTUALIZACIÓN MANATIL v1.4 - Patios archivo actualizado:
+- Orígenes reemplazados exclusivamente por los patios del archivo Patios Manatil(2).xlsx.
+- Destinos reemplazados exclusivamente por los patios del archivo Patios Manatil(2).xlsx.
+- Listas ordenadas alfabéticamente.
+- Oculto texto/campo "Próximo N° de viaje" en pantalla.
+- Verde superior/inferior ajustado a #009B4E.
+- Versión visible y manifest actualizados a v1.4.
+- Cache del service worker actualizado para forzar nueva versión.
