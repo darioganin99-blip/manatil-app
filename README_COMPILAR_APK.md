@@ -36,3 +36,11 @@
 - WhatsApp abre fuera del WebView mediante AndroidBridge.
 - Al guardar viaje, la app pasa a Reportes y posiciona el botón Enviar último por WhatsApp.
 - Android versionName 1.6 / versionCode 16.
+
+## Actualización v1.7
+- Se quitó el título "Nuevo viaje".
+- Se cambió "Reportes" por "Repor".
+- Se cambió "Actualizar GPS" por "GPS y Fecha".
+- Al actualizar GPS también se completa Fecha y hora.
+- Se configuró el logo MANATIL como icono de la APK.
+- Android versionName 1.7 / versionCode 17.

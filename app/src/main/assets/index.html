@@ -11,7 +11,7 @@
 <title>MANATIL Viajes</title>
 </head>
 <body class="app-shell">
-<div class="topbar"><span>MANATIL</span><span id="appVersion">v1.6</span></div>
+<div class="topbar"><span>MANATIL</span><span id="appVersion">v1.7</span></div>
 <header>
   <img class="logo" src="logo.png" alt="MANATIL">
   <div id="appVersion" class="small"></div>
@@ -20,14 +20,14 @@
 
 <nav>
   <button id="btn-trip" onclick="show('trip')">🚚 Viaje</button>
-  <button id="btn-reports" onclick="show('reports')">📋 Reportes</button>
+  <button id="btn-reports" onclick="show('reports')">📋 Repor</button>
   <button id="btn-admin" onclick="show('admin')">⚙️ Admin</button>
 </nav>
 
 <main>
 <section id="trip">
   <div class="card">
-    <h2>Nuevo viaje</h2>
+    
 
     
 
@@ -54,7 +54,7 @@
       <input id="lng" readonly placeholder="Longitud">
     </div>
     <p id="gpsStatus" class="small"></p>
-    <button class="btn light" onclick="getGps()">Actualizar GPS</button>
+    <button class="btn light" onclick="getGps()">GPS y Fecha</button>
   </div>
 
   <div class="card">
@@ -85,7 +85,7 @@
 
 <section id="reports" class="hidden">
   <div class="card">
-    <h2>Reportes</h2>
+    <h2>Repor</h2>
     <div class="statgrid">
       <div class="stat"><b id="totalTrips">0</b><br><span class="small">Histórico</span></div>
       <div class="stat"><b id="visibleTrips">0</b><br><span class="small">Visibles</span></div>
