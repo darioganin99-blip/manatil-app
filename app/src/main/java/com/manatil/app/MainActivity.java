@@ -2,6 +2,9 @@ package com.manatil.app;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.webkit.JavascriptInterface;
 import android.os.Bundle;
 import android.os.Build;
 import android.webkit.GeolocationPermissions;
@@ -39,7 +42,24 @@ public class MainActivity extends Activity {
         settings.setMediaPlaybackRequiresUserGesture(false);
         settings.setGeolocationEnabled(true);
 
-        webView.setWebViewClient(new WebViewClient());
+        webView.addJavascriptInterface(new AndroidBridge(), "AndroidBridge");
+
+        
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (url != null && (url.startsWith("whatsapp://") || url.startsWith("https://wa.me/") || url.startsWith("mailto:") || url.startsWith("tel:"))) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        startActivity(intent);
+                        return true;
+                    } catch (Exception e) {
+                        return false;
+                    }
+                }
+                return false;
+            }
+        });
 
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -64,6 +84,20 @@ public class MainActivity extends Activity {
             webView.goBack();
         } else {
             super.onBackPressed();
+        }
+    }
+
+    public class AndroidBridge {
+        @JavascriptInterface
+        public void openUrl(String url) {
+            runOnUiThread(() -> {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    // No compatible app installed.
+                }
+            });
         }
     }
 }

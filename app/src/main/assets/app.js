@@ -31,7 +31,7 @@ seed();
 
 function applyAppVersionUpdate(){
   const cfg = load(LS.config,{});
-  const appVersion = "MANATIL v1.5 - Profesional";
+  const appVersion = "v1.6";
   if(cfg.appVersion !== appVersion){
     save(LS.origins, ["Ajax", "All Power", "Arenal Grande", "Asencio", "ATM", "ATM - Transito", "Av Italia", "Ayax Carrasco", "Ayax Central", "Ayax Punta", "Boenal", "Bonport", "Bord", "Boulevar", "Carone", "Casa Nissan", "Cerro Largo", "Chacomer", "Colonia", "Convención", "Despacho Uy", "Directo - ATM", "Elias Regales", "Eurocar Aeropuerto", "Expedicion Py", "Fabemix", "Fac Agronomia", "Felitour", "Fiancar", "Forum", "Galicia", "Grupo trans", "Homero Leon", "Juncal", "Lopez Motors Uruguay", "Mabrisol", "Mayabel", "Minas", "Mitsubishi", "Montecom", "Multicar", "Nordex", "Oceano FM.", "Orejano", "Pideno", "Pisano", "Pocitos", "Polo Ayax", "Polo Oeste", "Punta Sayago", "RAS", "Ruta 1", "Santa Rosa", "Taller Av Italia", "Taller Cano", "Taller Car One", "Taller Galicia", "Taller Gti", "Taller Nissan", "Taller Renault", "Taller Tg Ride", "Taminer", "TMM", "Top Van"]);
     save(LS.destinations, ["Ajax", "All Power", "Arenal Grande", "Asencio", "ATM", "ATM - Transito", "Av Italia", "Ayax Carrasco", "Ayax Central", "Ayax Punta", "Boenal", "Bonport", "Bord", "Boulevar", "Carone", "Casa Nissan", "Cerro Largo", "Chacomer", "Colonia", "Convención", "Despacho Uy", "Directo - ATM", "Elias Regales", "Eurocar Aeropuerto", "Expedicion Py", "Fabemix", "Fac Agronomia", "Felitour", "Fiancar", "Forum", "Galicia", "Grupo trans", "Homero Leon", "Juncal", "Lopez Motors Uruguay", "Mabrisol", "Mayabel", "Minas", "Mitsubishi", "Montecom", "Multicar", "Nordex", "Oceano FM.", "Orejano", "Pideno", "Pisano", "Pocitos", "Polo Ayax", "Polo Oeste", "Punta Sayago", "RAS", "Ruta 1", "Santa Rosa", "Taller Av Italia", "Taller Cano", "Taller Car One", "Taller Galicia", "Taller Gti", "Taller Nissan", "Taller Renault", "Taller Tg Ride", "Taminer", "TMM", "Top Van"]);
@@ -43,6 +43,27 @@ function applyAppVersionUpdate(){
 
 
 applyAppVersionUpdate();
+
+
+function showToast(message){
+  let toast = document.getElementById("toastMessage");
+  if(!toast){
+    toast = document.createElement("div");
+    toast.id = "toastMessage";
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.className = "toast show";
+  setTimeout(() => { toast.className = "toast"; }, 2600);
+}
+
+function openExternalUrl(url){
+  if(window.AndroidBridge && typeof window.AndroidBridge.openUrl === "function"){
+    window.AndroidBridge.openUrl(url);
+    return;
+  }
+  window.location.href = url;
+}
 
 function show(tab){
   document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"));
@@ -170,10 +191,10 @@ function stopScanner(){
 function addVin(){
   saveLotFromForm();
   const vin=$("vin").value.trim().toUpperCase();
-  if(!vin){ alert("Ingresar VIN."); return; }
+  if(!vin){ showToast("Ingresar VIN."); return; }
   let lot=getLot();
   if(lot.vins.some(x=>x.vin===vin)){
-    alert("Ese VIN ya esta cargado en este viaje.");
+    showToast("Ese VIN ya está cargado en este viaje.");
     return;
   }
   lot.vins.push({vin});
@@ -215,11 +236,11 @@ function saveTrip(){
   saveLotFromForm();
   const lot=getLot();
   if(!lot.fleet || !lot.origin || !lot.destination){
-    alert("Completar flota, origen y destino.");
+    showToast("Completar flota, origen y destino.");
     return;
   }
   if(!lot.vins.length){
-    alert("Agregar al menos un VIN.");
+    showToast("Agregar al menos un VIN.");
     return;
   }
 
@@ -252,8 +273,10 @@ function saveTrip(){
   save(LS.lot,{vins:[],fleet:lot.fleet,origin:lot.origin,destination:lot.destination,createdAt:now(),lat:"",lng:""});
   $("notes").value="";
   autoSendTrip(trip.id);
-  alert("Viaje guardado: "+trip.id);
-  initTrip();
+  showToast("Viaje guardado: " + trip.id);
+  
+  show("reports");
+  setTimeout(()=>{ const b=document.getElementById("sendLastWhatsAppBtn"); if(b) b.scrollIntoView({behavior:"smooth", block:"center"}); }, 350);
 }
 
 function tripItems(id){
@@ -325,12 +348,12 @@ function buildText(id){
 function sendTripWhatsApp(id){
   const phone=(load(LS.config,{}).phone||"").replace(/\D/g,"");
   const base=phone?`https://wa.me/${phone}?text=`:"https://wa.me/?text=";
-  window.open(base+encodeURIComponent(buildText(id)),"_blank");
+  openExternalUrl(base+encodeURIComponent(buildText(id)));
 }
 
 function sendLastWhatsApp(){
   const t=visibleTrips()[0];
-  if(!t){ alert("No hay viajes visibles."); return; }
+  if(!t){ showToast("No hay viajes visibles."); return; }
   sendTripWhatsApp(t.id);
 }
 
@@ -350,7 +373,7 @@ function saveConfig(){
   cfg.email=$("email").value.trim();
   if($("syncUrl")) cfg.syncUrl=$("syncUrl").value.trim();
   save(LS.config,cfg);
-  alert("Configuracion guardada.");
+  showToast("Configuración guardada.");
 }
 
 function addListItem(key,inputId){
@@ -449,7 +472,7 @@ function buildTxtFileContent(tripId){
 function downloadTripTxt(tripId){
   const content = buildTxtFileContent(tripId);
   if(!content){
-    alert("No hay datos para generar el archivo.");
+    showToast("No hay datos para generar el archivo.");
     return;
   }
   const name = `${tripId}.txt`;
@@ -459,7 +482,7 @@ function downloadTripTxt(tripId){
 async function shareTripTxt(tripId){
   const content = buildTxtFileContent(tripId);
   if(!content){
-    alert("No hay datos para compartir.");
+    showToast("No hay datos para compartir.");
     return;
   }
 
@@ -476,13 +499,13 @@ async function shareTripTxt(tripId){
   }
 
   downloadTripTxt(tripId);
-  alert("Tu navegador no permite adjuntar automáticamente. Se descargó el TXT para enviarlo por WhatsApp.");
+  showToast("Se descargó el TXT para enviarlo por WhatsApp.");
 }
 
 function shareLastTripTxt(){
   const t = visibleTrips()[0];
   if(!t){
-    alert("No hay viajes visibles.");
+    showToast("No hay viajes visibles.");
     return;
   }
   shareTripTxt(t.id);
@@ -491,10 +514,7 @@ function shareLastTripTxt(){
 
 
 
-function showAppVersion(){
-  const el = document.getElementById("appVersion");
-  if(el) el.textContent = "MANATIL v1.5 - Profesional";
-}
+function showAppVersion(){ const el=document.getElementById("appVersion"); if(el) el.textContent="v1.6"; }
 
 
 

@@ -29,3 +29,10 @@
 - Verde corporativo fijo.
 - Navegación más limpia.
 - Android versionName 1.5 / versionCode 15.
+
+## Actualización v1.6 Android corregido
+- Versión visible reducida a v1.6.
+- Se reemplazaron alertas nativas por mensajes tipo toast.
+- WhatsApp abre fuera del WebView mediante AndroidBridge.
+- Al guardar viaje, la app pasa a Reportes y posiciona el botón Enviar último por WhatsApp.
+- Android versionName 1.6 / versionCode 16.

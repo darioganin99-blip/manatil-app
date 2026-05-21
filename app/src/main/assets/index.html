@@ -11,7 +11,7 @@
 <title>MANATIL Viajes</title>
 </head>
 <body class="app-shell">
-<div class="topbar"><span>MANATIL</span><span id="appVersion">MANATIL v1.5 - Profesional</span></div>
+<div class="topbar"><span>MANATIL</span><span id="appVersion">v1.6</span></div>
 <header>
   <img class="logo" src="logo.png" alt="MANATIL">
   <div id="appVersion" class="small"></div>
@@ -91,7 +91,7 @@
       <div class="stat"><b id="visibleTrips">0</b><br><span class="small">Visibles</span></div>
       <div class="stat"><b id="totalUnits">0</b><br><span class="small">VIN visibles</span></div>
     </div>
-    <button class="btn" onclick="sendLastWhatsApp()">Enviar último por WhatsApp</button>
+    <button class="btn" id="sendLastWhatsAppBtn" id="sendLastWhatsAppBtn" onclick="sendLastWhatsApp()">Enviar último por WhatsApp</button>
     <button class="btn secondary" onclick="shareLastTripTxt()">Generar / compartir TXT último viaje</button>
     <button class="btn warn" onclick="clearVisibleTrips()">Limpiar viajes visibles</button>
     <button class="btn light" onclick="restoreVisibleTrips()">Mostrar histórico</button>
