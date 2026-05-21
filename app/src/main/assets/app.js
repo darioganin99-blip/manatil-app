@@ -537,3 +537,17 @@ window.addEventListener("load",()=>{
   $("vin").addEventListener("input",vinChanged);
   ["tripFleet","origin","destination"].forEach(id=>$(id).addEventListener("change",saveLotFromForm));
 });
+
+
+document.addEventListener("DOMContentLoaded", ()=>{
+   document.querySelectorAll("*").forEach(el=>{
+      if(el.textContent && el.textContent.trim()==="Unidades del viaje"){
+         el.style.fontSize="16px";
+         el.style.fontWeight="700";
+      }
+      if(el.textContent && el.textContent.trim()==="VIN cargados"){
+         el.style.fontSize="16px";
+         el.style.fontWeight="700";
+      }
+   });
+});
