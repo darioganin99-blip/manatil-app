@@ -1,8 +1,8 @@
 {
-  "name": "MANATIL v1.4",
+  "name": "MANATIL v1.5",
   "short_name": "MANATIL",
-  "description": "Control de viajes MANATIL v1.4 con patios del archivo actualizado.",
-  "start_url": "./index.html?v=1.4",
+  "description": "Control operativo de viajes MANATIL v1.5.",
+  "start_url": "./index.html?v=1.5",
   "scope": "./",
   "display": "standalone",
   "background_color": "#009B4E",
@@ -22,5 +22,5 @@
       "purpose": "any maskable"
     }
   ],
-  "id": "/?v=1.4"
+  "id": "/?v=1.5"
 }

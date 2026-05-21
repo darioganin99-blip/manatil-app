@@ -31,7 +31,7 @@ seed();
 
 function applyAppVersionUpdate(){
   const cfg = load(LS.config,{});
-  const appVersion = "MANATIL v1.4 - Patios archivo actualizado";
+  const appVersion = "MANATIL v1.5 - Profesional";
   if(cfg.appVersion !== appVersion){
     save(LS.origins, ["Ajax", "All Power", "Arenal Grande", "Asencio", "ATM", "ATM - Transito", "Av Italia", "Ayax Carrasco", "Ayax Central", "Ayax Punta", "Boenal", "Bonport", "Bord", "Boulevar", "Carone", "Casa Nissan", "Cerro Largo", "Chacomer", "Colonia", "Convención", "Despacho Uy", "Directo - ATM", "Elias Regales", "Eurocar Aeropuerto", "Expedicion Py", "Fabemix", "Fac Agronomia", "Felitour", "Fiancar", "Forum", "Galicia", "Grupo trans", "Homero Leon", "Juncal", "Lopez Motors Uruguay", "Mabrisol", "Mayabel", "Minas", "Mitsubishi", "Montecom", "Multicar", "Nordex", "Oceano FM.", "Orejano", "Pideno", "Pisano", "Pocitos", "Polo Ayax", "Polo Oeste", "Punta Sayago", "RAS", "Ruta 1", "Santa Rosa", "Taller Av Italia", "Taller Cano", "Taller Car One", "Taller Galicia", "Taller Gti", "Taller Nissan", "Taller Renault", "Taller Tg Ride", "Taminer", "TMM", "Top Van"]);
     save(LS.destinations, ["Ajax", "All Power", "Arenal Grande", "Asencio", "ATM", "ATM - Transito", "Av Italia", "Ayax Carrasco", "Ayax Central", "Ayax Punta", "Boenal", "Bonport", "Bord", "Boulevar", "Carone", "Casa Nissan", "Cerro Largo", "Chacomer", "Colonia", "Convención", "Despacho Uy", "Directo - ATM", "Elias Regales", "Eurocar Aeropuerto", "Expedicion Py", "Fabemix", "Fac Agronomia", "Felitour", "Fiancar", "Forum", "Galicia", "Grupo trans", "Homero Leon", "Juncal", "Lopez Motors Uruguay", "Mabrisol", "Mayabel", "Minas", "Mitsubishi", "Montecom", "Multicar", "Nordex", "Oceano FM.", "Orejano", "Pideno", "Pisano", "Pocitos", "Polo Ayax", "Polo Oeste", "Punta Sayago", "RAS", "Ruta 1", "Santa Rosa", "Taller Av Italia", "Taller Cano", "Taller Car One", "Taller Galicia", "Taller Gti", "Taller Nissan", "Taller Renault", "Taller Tg Ride", "Taminer", "TMM", "Top Van"]);
@@ -493,7 +493,7 @@ function shareLastTripTxt(){
 
 function showAppVersion(){
   const el = document.getElementById("appVersion");
-  if(el) el.textContent = "MANATIL v1.4 - Patios archivo actualizado";
+  if(el) el.textContent = "MANATIL v1.5 - Profesional";
 }
 
 

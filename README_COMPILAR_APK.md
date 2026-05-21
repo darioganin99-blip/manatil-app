@@ -22,3 +22,10 @@
 - Android versionName: 1.4
 - Android versionCode: 14
 - App visible: MANATIL v1.4 - Patios archivo actualizado
+
+
+## Actualización v1.5 Profesional
+- Interfaz más moderna tipo app nativa.
+- Verde corporativo fijo.
+- Navegación más limpia.
+- Android versionName 1.5 / versionCode 15.

@@ -10,17 +10,18 @@
 <link rel="icon" href="icon-192.png">
 <title>MANATIL Viajes</title>
 </head>
-<body>
+<body class="app-shell">
+<div class="topbar"><span>MANATIL</span><span id="appVersion">MANATIL v1.5 - Profesional</span></div>
 <header>
   <img class="logo" src="logo.png" alt="MANATIL">
   <div id="appVersion" class="small"></div>
-  <div class="subtitle">Viajes por lote VIN</div>
+  <div class="subtitle">Control operativo de viajes</div>
 </header>
 
 <nav>
-  <button id="btn-trip" onclick="show('trip')">Viaje</button>
-  <button id="btn-reports" onclick="show('reports')">Reportes</button>
-  <button id="btn-admin" onclick="show('admin')">Admin</button>
+  <button id="btn-trip" onclick="show('trip')">🚚 Viaje</button>
+  <button id="btn-reports" onclick="show('reports')">📋 Reportes</button>
+  <button id="btn-admin" onclick="show('admin')">⚙️ Admin</button>
 </nav>
 
 <main>
@@ -28,8 +29,7 @@
   <div class="card">
     <h2>Nuevo viaje</h2>
 
-    <label class="hidden">Próximo N° de viaje</label>
-    <input id="nextTripId" readonly>
+    
 
     <label>Flota</label>
     <select id="tripFleet"></select>
